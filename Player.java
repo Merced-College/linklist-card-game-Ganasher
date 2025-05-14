@@ -1,5 +1,5 @@
 public class Player {
-    String name:
+    String name;
     int score;
     Card[] hand;
     int handIndex = 0;

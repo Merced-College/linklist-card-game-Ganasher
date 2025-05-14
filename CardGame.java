@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class CardGame {
 	
-	private static LinkList cardList = new LinkList();  // make list
+	private static LinkedList cardList = new LinkedList();  // make list
 
 	public static void main(String[] args) {
 
@@ -62,6 +62,43 @@ public class CardGame {
 		System.out.println("the deck");
 		cardList.displayList();
 
+
+
+        //Starting the Card Game
+        Player player1 = new Player("Player1, Champion of Champions", 5);
+        Player player2 = new Player("Player2, Best of Buds", 5);
+
+        // Deal 5 cards each
+        for (int i = 0; i < 5; i++) {
+            player1.drawCard(cardList.getFirst());
+            player2.drawCard(cardList.getFirst());
+        }
+
+        // Play 5 rounds
+        for (int i = 0; i < 5; i++) {
+            Card card1 = player1.playCard(i);
+            Card card2 = player2.playCard(i);
+
+            System.out.println(player1.getName() + " plays: " + card1);
+            System.out.println(player2.getName() + " plays: " + card2);
+
+            if (card1.getCardValue() > card2.getCardValue()) {
+                player1.incrementScore();
+                System.out.println(player1.getName() + " wins the round!");
+            } else if (card1.getCardValue() < card2.getCardValue()) {
+                player2.incrementScore();
+                System.out.println(player2.getName() + " wins the round!");
+            } else {
+                System.out.println("It's a tie!");
+            }
+
+            System.out.println();
+        }
+
+        // Show final scores
+        System.out.println("Final Score:");
+        System.out.println(player1.getName() + ": " + player1.getScore());
+        System.out.println(player2.getName() + ": " + player2.getScore());
 	}//end main
 
 }//end class
